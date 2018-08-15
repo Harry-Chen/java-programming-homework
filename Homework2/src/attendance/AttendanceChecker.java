@@ -36,8 +36,8 @@ public class AttendanceChecker {
             record.put(people, record.get(people) + 1);
         }
 
-        var maxPeople = record.entrySet().stream().max(Comparator.comparingInt(Map.Entry::getValue)).get().getKey();
+        var maxCount = record.values().stream().max(Comparator.comparingInt(o -> o)).get();
+        record.entrySet().stream().filter(s -> s.getValue().equals(maxCount)).map(Map.Entry::getKey).forEach(System.out::println);
 
-        System.out.println(maxPeople);
     }
 }
